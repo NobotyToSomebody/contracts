@@ -1,0 +1,747 @@
+{
+  "manifestVersion": "3.2",
+  "proxies": [
+    {
+      "address": "0xF6cb5BB2bf7D79CA722E01D8d7B5550Bd2276442",
+      "txHash": "0x2ac8a3889f274628203002421aa43bbf64dd06af03b8ac9c5eca648f9a2aab87",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x9f311097201260b95F3f6B49F525DeFf2C038174",
+      "txHash": "0x2f7d707ddfa362a6f739ae420484f7b9bb3226c188db26438ea018bf247d02e4",
+      "kind": "transparent"
+    },
+    {
+      "address": "0x184269c25d255bc4DB308A08882bE97d135777d8",
+      "txHash": "0xf6df57eeeddec0daedef6550e1799138f20fbf9c4b912ce612cdd1ec40c29613",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "7b94fedde42c760e31f0f3395c0d2cbef02890a6ae2563ed44ca9a073c7235cd": {
+      "address": "0xB828C34c64539d884aC6ff4ba4AeF9fd223bBA76",
+      "txHash": "0x80f80500235fcc5f29ffb70cd101b487dd100defb4e15e1a7deffca995997169",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "_roles",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_mapping(t_bytes32,t_struct(RoleData)5245_storage)",
+            "contract": "AccessControl",
+            "src": "@openzeppelin/contracts/access/AccessControl.sol:56"
+          },
+          {
+            "label": "controllers",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_address,t_struct(AddressSet)7649_storage)",
+            "contract": "BucketRegistry",
+            "src": "contracts/BucketRegistry.sol:23"
+          },
+          {
+            "label": "bucketsNames",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_string_memory_ptr,t_uint256)",
+            "contract": "BucketRegistry",
+            "src": "contracts/BucketRegistry.sol:26"
+          },
+          {
+            "label": "registeredBucketManageContracts",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_struct(AddressSet)7649_storage",
+            "contract": "BucketRegistry",
+            "src": "contracts/BucketRegistry.sol:27"
+          },
+          {
+            "label": "bucketFactory",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_address",
+            "contract": "BucketRegistry",
+            "src": "contracts/BucketRegistry.sol:29"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_bytes32)dyn_storage": {
+            "label": "bytes32[]",
+            "numberOfBytes": "32"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_bytes32": {
+            "label": "bytes32",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_bool)": {
+            "label": "mapping(address => bool)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_struct(AddressSet)7649_storage)": {
+            "label": "mapping(address => struct EnumerableSet.AddressSet)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_struct(RoleData)5245_storage)": {
+            "label": "mapping(bytes32 => struct AccessControl.RoleData)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_bytes32,t_uint256)": {
+            "label": "mapping(bytes32 => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_string_memory_ptr,t_uint256)": {
+            "label": "mapping(string => uint256)",
+            "numberOfBytes": "32"
+          },
+          "t_string_memory_ptr": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_struct(AddressSet)7649_storage": {
+            "label": "struct EnumerableSet.AddressSet",
+            "members": [
+              {
+                "label": "_inner",
+                "type": "t_struct(Set)7334_storage",
+                "offset": 0,
+                "slot": "0"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(RoleData)5245_storage": {
+            "label": "struct AccessControl.RoleData",
+            "members": [
+              {
+                "label": "members",
+                "type": "t_mapping(t_address,t_bool)",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "adminRole",
+                "type": "t_bytes32",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_struct(Set)7334_storage": {
+            "label": "struct EnumerableSet.Set",
+            "members": [
+              {
+                "label": "_values",
+                "type": "t_array(t_bytes32)dyn_storage",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "_indexes",
+                "type": "t_mapping(t_bytes32,t_uint256)",
+                "offset": 0,
+                "slot": "1"
+              }
+            ],
+            "numberOfBytes": "64"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          },
+          "t_string_storage": {
+            "label": "string"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "69be7c3538a63764be8473d7d338e0c3b2524e4add26b3b38afefee5e8329f2a": {
+      "address": "0x1F277EafF8ccFEB3F2a497AF1Ef60DF8ABCCdE6E",
+      "txHash": "0x47e8de328597c39d9f1f1c3cde2972d4a23c25cddf40302e2ca795a058d350ab",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "bucketRegistry",
+            "offset": 2,
+            "slot": "0",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:21"
+          },
+          {
+            "label": "tokenHub",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:22"
+          },
+          {
+            "label": "cross_chain",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:23"
+          },
+          {
+            "label": "bucket_hub",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:24"
+          },
+          {
+            "label": "permission_hub",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:25"
+          },
+          {
+            "label": "sp_address_testnet",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:26"
+          },
+          {
+            "label": "greenfield_executor",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:27"
+          },
+          {
+            "label": "callbackGasLimit",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:29"
+          },
+          {
+            "label": "failureHandlerStrategy",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint8",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:30"
+          },
+          {
+            "label": "version",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_string_storage",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:32"
+          },
+          {
+            "label": "admin",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_address",
+            "contract": "BucketFactory",
+            "src": "contracts/BucketFactory.sol:33"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_string_storage": {
+            "label": "string",
+            "numberOfBytes": "32"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "68752e71664a2f7f7d4539b5968069949c1a77fa9c04c4aab288cccefde5e3f4": {
+      "address": "0xaDC57C6E7843BeC65c4cC30CEB8BAe0be925A4f3",
+      "txHash": "0xfc8f4479738d7ae6355d45975e0fa0abdf98e9db5a749be8b623cd1215eba9d7",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "createBucketFee",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:24"
+          },
+          {
+            "label": "bank",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:25"
+          },
+          {
+            "label": "bucketRegistry",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_contract(IBucketRegistry)10240",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:27"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IBucketRegistry)10240": {
+            "label": "contract IBucketRegistry",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "045b3d28b9fa66b2b1b8427687244c7ef0456cf1cddf71d15710afaa500c9171": {
+      "address": "0xf2442A6ba5155E37e79d8ec3f0B58Ec609b91E14",
+      "txHash": "0xf768b0720787aed1e1c8284eebe7cc9cbaeab122caa65d5ae2fa5509ca21a645",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "createBucketFee",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:24"
+          },
+          {
+            "label": "bank",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:25"
+          },
+          {
+            "label": "bucketRegistry",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_contract(IBucketRegistry)1031",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:27"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IBucketRegistry)1031": {
+            "label": "contract IBucketRegistry",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "4b73405de6dd8da98137de8ca94910cb5f5a8e137e8c30cf23794dc69f81f4f3": {
+      "address": "0xe07E566E73F1AdfcBCCf0D0e63008Faca223C0aE",
+      "txHash": "0x6bb7986d48fc05107adeb3973e7a9a3581575c8b5935db99e5ca824fafe076dc",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "createBucketFee",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:24"
+          },
+          {
+            "label": "bank",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:25"
+          },
+          {
+            "label": "bucketRegistry",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_contract(IBucketRegistry)1031",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:27"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IBucketRegistry)1031": {
+            "label": "contract IBucketRegistry",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "af083988538f7b1a7f07ffc745d63f8877d2599e73eafc50991c3a767e02c1fa": {
+      "address": "0xbd1267e34c5baf1A218E553fecBa4313666f9e09",
+      "txHash": "0xedb34f787ca22175a4c645ca3be2f9d5ef3aa1fb0a775cd5293854ad080d042a",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:63",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol:68"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "52",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol:94"
+          },
+          {
+            "label": "createBucketFee",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:24"
+          },
+          {
+            "label": "bank",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_uint256",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:25"
+          },
+          {
+            "label": "bucketRegistry",
+            "offset": 0,
+            "slot": "103",
+            "type": "t_contract(IBucketRegistry)1031",
+            "contract": "Passport",
+            "src": "contracts/Passport.sol:27"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IBucketRegistry)1031": {
+            "label": "contract IBucketRegistry",
+            "numberOfBytes": "20"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

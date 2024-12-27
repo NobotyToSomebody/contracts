@@ -12,13 +12,10 @@ import {
    Effect,
    PrincipalType,
 } from '@bnb-chain/greenfield-cosmos-types/greenfield/permission/common';
-
-
-
+import { Passport__factory } from "../typechain-types";
 
 const callbackGasLimit = 200000n
 const failureHandleStrategy = 2
-// const sp_address = "0x1eb29708f59f23fe33d6f1cd3d54f07636ff466a"
 
 //bsc testnet
 const TOKEN_HUB = "0xED8e5C546F84442219A5a987EE1D820698528E04";
@@ -27,16 +24,6 @@ const BUCKET_HUB = "0x5BB17A87D03620b313C39C24029C94cB5714814A";
 const PERMISSION_HUB = "0x25E1eeDb5CaBf288210B132321FBB2d90b4174ad";
 const SP_ADDRESS_TESTNET = "0x1eb29708f59f23fe33d6f1cd3d54f07636ff466a";
 const GREENFIELD_EXECUTOR = "0x3E3180883308e8B4946C9a485F8d91F8b15dC48e";
-const SCHEMA_REGISTRY = "0x08C8b8417313fF130526862f90cd822B55002D72"
-
-//opbnb testnet
-// const TOKEN_HUB = "0x59614C9e9B5Df6dF4dc9e457cc7F3a67D796d3b2";
-// const CROSS_CHAIN = "0xF0Bcf6E4F72bCB33b944275dd5c9d4540a259eB9";
-// const BUCKET_HUB = "0xCAB5728B7cc21D0056E237D371b28efEEBFd8C2d";
-// const PERMISSION_HUB = "0x089e97333da0B4260131068b7492D10fbEeC67BC";
-// const SP_ADDRESS_TESTNET = "0x5FFf5A6c94b182fB965B40C7B9F30199b969eD2f";
-// const GREENFIELD_EXECUTOR = "0x4bF975A172793FbcFff30Ffe5b3141A5C5aeBE52";
-// const SCHEMA_REGISTRY = "0x9676dC3469B70f67f8968A832C9ef7eDE3C1AB45"
 
 //bsc mainnet
 // const TOKEN_HUB = "0xeA97dF87E6c7F68C9f95A69dA79E19B834823F25";
@@ -47,15 +34,25 @@ const SCHEMA_REGISTRY = "0x08C8b8417313fF130526862f90cd822B55002D72"
 // const GREENFIELD_EXECUTOR = "0xFa39D9111D927836b14D071d43e0aAD9cE83bBBf";
 // const SCHEMA_REGISTRY = "0x5e905F77f59491F03eBB78c204986aaDEB0C6bDa"
 
+async function buyBucket(_passport:string,value:bigint) {
+    const [signer] = await ethers.getSigners();
+    const passport = Passport__factory.connect(_passport,signer)
+    const resp = await passport.buyBucketManager({value});
+    await resp.wait()
+    console.log(`buy bucket manager in tx ${resp.hash}`);
+}
 
-//opbnb mainnet
-// const TOKEN_HUB = "0x723987D45BA424D562b087eE032b8C27F2E7b689";
-// const CROSS_CHAIN = "0x7E376AEFAF05E20e3eB5Ee5c08fE1B9832b175cE";
-// const BUCKET_HUB = "0xDbf8aEcB0F697A5c71baA0C1470Ba8D7f0395018";
-// const PERMISSION_HUB = "0x979876507F1395E5D391F9Dbef68468a22162B8D";
-// const SP_ADDRESS_TESTNET = "0x5FFf5A6c94b182fB965B40C7B9F30199b969eD2f";
-// const GREENFIELD_EXECUTOR = "0xdFc5DC31bfbf992C19C171db273A028736322Ec4";
-// const SCHEMA_REGISTRY = "0x65CFBDf1EA0ACb7492Ecc1610cfBf79665DC631B"
+async function deployPassport(fee: bigint, bucketRegistry:string) {
+    const [signer] = await ethers.getSigners();
+    console.log('Deploy passport contract with account:',signer.address);
+
+    const Passport =  await ethers.getContractFactory("Passport",signer);
+    const passport = await upgrades.deployProxy(Passport,[fee,bucketRegistry]);
+    await passport.waitForDeployment();
+    const addr = await passport.getAddress();
+    console.log('Passport Address:', addr)
+    return addr
+}
 
 async function deployRegistry() {
     const [signer] = await ethers.getSigners();
@@ -75,7 +72,6 @@ async function deployFactory(bucketRegistry: string) {
 
     const factory = await upgrades.deployProxy(Factory,[
         bucketRegistry,
-        SCHEMA_REGISTRY,
         TOKEN_HUB,
         CROSS_CHAIN,
         BUCKET_HUB,
@@ -173,16 +169,6 @@ async function createBucket(_bucketManager: string, name: string) {
     console.log(`https://testnet.greenfieldscan.com/bucket/${schemaHexBucketId}`);
 }
 
-function getExecDataStr(bucketName:string,_bucketManager:string) {
-    const dataSetBucketFlowRateLimit = ExecutorMsg.getSetBucketFlowRateLimitParams({
-        bucketName:bucketName,
-        bucketOwner: _bucketManager,
-        operator: _bucketManager,
-        paymentAddress: _bucketManager,
-        flowRateLimit: '100000000000000000',
-    });
-    return dataSetBucketFlowRateLimit[1];
-} 
 
 async function getBucketStatus(_bucketManager: string, name: string) {
     const [signer] = await ethers.getSigners();
@@ -202,7 +188,6 @@ async function getBucketId(_bucketManager: string,_registry: string,name: string
     const id = await registry.bucketsNames(userBucketName)
     console.log(`ID of bucket ${userBucketName} is ${id}`)
 }
-
 
 async function createPolicy(_bucketManager: string ,eoa : string, name: string) {
     const [signer] = await ethers.getSigners();
@@ -258,7 +243,6 @@ async function createPolicy(_bucketManager: string ,eoa : string, name: string) 
     );
     return ethers.keccak256(policyDataToAllowUserOperateBucket)
 }
-
 
 async function getPolicyStatus(_bucketManager: string, _hash :string) {
     const [signer] = await ethers.getSigners();
@@ -373,34 +357,52 @@ async function ownership(_bucketManager:string) {
     console.log(`ownership of manager ${_bucketManager} is ${owner}`)
 }
 
+async function upgradePassport(passportAddr:string) {
+    const [signer] = await ethers.getSigners();
+    const Passport =  await ethers.getContractFactory("Passport",signer);
+    const resp = await upgrades.upgradeProxy(passportAddr, Passport)
+    await resp.waitForDeployment()
+}
+
 async function main() {
-    const registry = await deployRegistry()
-    const factory = await deployFactory(registry)
-    await setFactoryAddressForRegistry(registry,factory)
+    // const registry = await deployRegistry()
+    // const factory = await deployFactory(registry)
+    // await setFactoryAddressForRegistry(registry,factory)
+
+    const registry = "0xF6cb5BB2bf7D79CA722E01D8d7B5550Bd2276442"
+    const factory = "0x9f311097201260b95F3f6B49F525DeFf2C038174"
 
     const salt = ethers.hashMessage("12321")
-    const manager = await deployBucketManager(factory,salt,"0.001")
-    await getControlledManagers(registry,"0x471543A3bd04486008c8a38c5C00543B73F1769e")
-    await sleep(60)
+    // const manager = await deployBucketManager(factory,salt,"0.001")
+    const manager = "0x625c0590524f672F77df82CBF5Fdfc6396eE8e11"
 
-    //bsc testnet
-    // const registry = "0x7540304c2C017f6441b5425f4d5E4B70e21171E8"
-    // const factory = "0x54F3Dccc4b5D33f0b7d65e6B820F50497D4B2bd8"
-    // const manager = "0xA3Ee175AD45f560C7a54Fa5eF58fc02E92Bb3cB7"
+    // await getControlledManagers(registry,"0x471543A3bd04486008c8a38c5C00543B73F1769e")
+
+    // const passport = deployPassport(100n,registry)
+    const passport = "0x184269c25d255bc4DB308A08882bE97d135777d8"
 
 
-    // const schemaId = "0xacc308075dabd756f3806f0f2a0d919d12b13597ba4791de96283aa646c2c5b5";
-    const name = "nobody-0x121212"  
+    const name = "nobody121212"  
     const eoa = '0x471543A3bd04486008c8a38c5C00543B73F1769e'
 
-    // user bucket 
-    await createBucket(manager,name)
-    await getBucketStatus(manager,name)
-    await getBucketId(manager,registry,name)
-    await sleep(60)
-    const policyHash1 = await createPolicy(manager,eoa,name)
-    await getPolicyStatus(manager,policyHash1)
-    
+    // create bucket 
+    // await createBucket(manager,name)
+    // await getBucketStatus(manager,name)
+    // await getBucketId(manager,registry,name)
+    // await sleep(60)
+
+    // create policy
+    // const policyHash1 = await createPolicy(manager,eoa,name)
+    // await getPolicyStatus(manager,policyHash1)
+
+    // await transferOwnership(manager,passport)
+
+    // await upgradePassport(passport)
+    // await sleep(60)
+
+    // await buyBucket(passport,100n)
+    // await sleep(60)
+    await ownership(manager)
 }
   // We recommend this pattern to be able to use async/await everywhere
   // and properly handle errors.
